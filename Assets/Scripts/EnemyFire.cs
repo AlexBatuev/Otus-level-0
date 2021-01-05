@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyFire : MonoBehaviour
@@ -13,9 +12,9 @@ public class EnemyFire : MonoBehaviour
     public float maxDelay = 2f;
     public float fireRange = 5f;
 
-    void Start()
+    private void Start()
     {
-        StartCoroutine("Fire");
+        StartCoroutine(nameof(Fire));
     }
     
     private IEnumerator Fire()
@@ -37,6 +36,6 @@ public class EnemyFire : MonoBehaviour
 
         var delay = Random.Range(minDelay, maxDelay);
         yield return new WaitForSeconds(delay);
-        StartCoroutine("Fire");
+        StartCoroutine(nameof(Fire));
     }
 }

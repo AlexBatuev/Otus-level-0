@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
@@ -9,26 +7,27 @@ public class PlayerMove : MonoBehaviour
 
     public Rigidbody rb;
 
-    void Start()
+    private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         // Cursor.visible = false;
     }
 
-    void Update()
+    private void Update()
     {
-        float mouseX = Input.GetAxis("Mouse X") * mouseSpeed;
-        float mouseY = Input.GetAxis("Mouse Y") * mouseSpeed;
+        var mouseX = Input.GetAxis("Mouse X") * mouseSpeed;
+        var mouseY = Input.GetAxis("Mouse Y") * mouseSpeed;
         transform.Rotate(-mouseY, mouseX, 0);
     }
-    
-    void FixedUpdate()
+
+    private void FixedUpdate()
     {
         var x = Input.GetAxis("Horizontal");
         var y = Input.GetAxis("Jump");
         var z = Input.GetAxis("Vertical");
 
-        var move = transform.right * x + transform.up * y + transform.forward * z;
-        rb.velocity = move * speed * Time.deltaTime;
+        var t = transform;
+        var move = t.right * x + t.up * y + t.forward * z;
+        rb.velocity = move * (speed * Time.deltaTime);
     }
 }

@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyTeleport : MonoBehaviour
@@ -7,10 +6,10 @@ public class EnemyTeleport : MonoBehaviour
     public float range = 10f;
     public float minDelay = 1f;
     public float maxDelay = 2f;
-    
-    void Start()
+
+    internal void Start()
     {
-        StartCoroutine("Teleport");
+        StartCoroutine(methodName: "Teleport");
     }
 
     private IEnumerator Teleport()
@@ -19,6 +18,6 @@ public class EnemyTeleport : MonoBehaviour
 
         var delay = Random.Range(minDelay, maxDelay);
         yield return new WaitForSeconds(delay);
-        StartCoroutine("Teleport");
+        StartCoroutine(nameof(Teleport));
     }
 }

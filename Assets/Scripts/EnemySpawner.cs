@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
@@ -11,9 +10,9 @@ public class EnemySpawner : MonoBehaviour
     public float minDelay = 1f;
     public float maxDelay = 1f;
 
-    void Start()
+    private void Start()
     {
-        StartCoroutine("SpawnEnemy");
+        StartCoroutine(nameof(SpawnEnemy));
     }
 
     private IEnumerator SpawnEnemy()
@@ -32,6 +31,6 @@ public class EnemySpawner : MonoBehaviour
 
         var delay = Random.Range(minDelay, maxDelay);
         yield return new WaitForSeconds(delay);
-        StartCoroutine("SpawnEnemy");
+        StartCoroutine(nameof(SpawnEnemy));
     }
 }

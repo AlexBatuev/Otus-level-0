@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
@@ -10,15 +8,15 @@ public class PlayerHealth : MonoBehaviour
 
     public Text text;
     public ParticleSystem ps;
-    
-    void Start()
+
+    private void Start()
     {
         text.text = $"Health: {health}";
     }
     
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag != "EnemyBullet")
+        if (!other.gameObject.CompareTag("EnemyBullet"))
             return;
 
         health--;
@@ -27,9 +25,6 @@ public class PlayerHealth : MonoBehaviour
 
         if (health > 0)
             return;
-        
-        // Destroy(other.gameObject);
-        // Destroy(gameObject);
         
         SceneManager.LoadScene("SampleScene");
     }

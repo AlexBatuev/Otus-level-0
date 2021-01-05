@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
@@ -9,13 +7,14 @@ public class EnemyHealth : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag != "PlayerBullet")
+        if (!other.gameObject.CompareTag("PlayerBullet"))
             return;
         
         if (--health > 0)
             return;
-        
-        Instantiate(particlePrefab, transform.position, transform.rotation);
+
+        var t = transform;
+        Instantiate(particlePrefab, t.position, t.rotation);
 
         Destroy(other.gameObject);
         Destroy(gameObject);
