@@ -13,8 +13,7 @@ public class EnemyHealth : MonoBehaviour
         if (--health > 0)
             return;
 
-        var t = transform;
-        Instantiate(particlePrefab, t.position, t.rotation);
+        Instantiate(particlePrefab, transform.position, Quaternion.identity);
 
         Destroy(other.gameObject);
         Destroy(gameObject);

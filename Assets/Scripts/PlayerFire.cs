@@ -3,10 +3,10 @@
 public class PlayerFire : MonoBehaviour
 {
     public GameObject bulletPrefab;
-    public Transform sourceTransform;
     public GameObject textBackground;
+    public Transform sourceTransform;
     public float bulletSpeed = 5f;
-    public float lifeTime = 5f;
+    public float bulletLifeTime = 5f;
 
     private bool _notStarted = true;
 
@@ -33,11 +33,10 @@ public class PlayerFire : MonoBehaviour
             bullet.tag = "PlayerBullet";
             
             bullet.transform.position = sourceTransform.position;
-            bullet.transform.rotation = bullet.transform.rotation;
             
             bullet.GetComponent<Rigidbody>().AddForce(sourceTransform.forward * bulletSpeed, ForceMode.Impulse);
         
-            Destroy(bullet, lifeTime);        
+            Destroy(bullet, bulletLifeTime);        
         }
     }
 }

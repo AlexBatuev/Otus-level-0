@@ -6,9 +6,9 @@ public class EnemySpawner : MonoBehaviour
     public GameObject cubeEnemyPrefab;
     public GameObject prismEnemyPrefab;
     public Transform playerTransform;
-    public float range = 10f;
-    public float minDelay = 1f;
-    public float maxDelay = 1f;
+    public float maxSpawnRange = 10f;
+    public float minSpawnDelay = 1f;
+    public float maxSpawnDelay = 1f;
 
     private void Start()
     {
@@ -17,19 +17,15 @@ public class EnemySpawner : MonoBehaviour
 
     private IEnumerator SpawnEnemy()
     {
-        GameObject prefab;
-
-        if (Random.Range(0, 2) == 1)
-            prefab = cubeEnemyPrefab;
-        else
-            prefab = prismEnemyPrefab;
+        var prefab = Random.Range(0, 2) == 1 ? cubeEnemyPrefab : prismEnemyPrefab;
         
         var enemy = Instantiate(prefab);
-        enemy.transform.position = Random.insideUnitSphere * range;
+        enemy.transform.position = Random.insideUnitSphere * maxSpawnRange;
+        
         var fire = enemy.GetComponent<EnemyFire>();
         fire.targetTransform = playerTransform;
 
-        var delay = Random.Range(minDelay, maxDelay);
+        var delay = Random.Range(minSpawnDelay, maxSpawnDelay);
         yield return new WaitForSeconds(delay);
         StartCoroutine(nameof(SpawnEnemy));
     }

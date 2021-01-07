@@ -3,20 +3,20 @@ using UnityEngine;
 
 public class EnemyTeleport : MonoBehaviour
 {
-    public float range = 10f;
-    public float minDelay = 1f;
-    public float maxDelay = 2f;
+    public float maxTeleportRange = 10f;
+    public float minTeleportDelay = 1f;
+    public float maxTeleportDelay = 2f;
 
     internal void Start()
     {
-        StartCoroutine(methodName: "Teleport");
+        StartCoroutine(methodName: nameof(Teleport));
     }
 
     private IEnumerator Teleport()
     {
-        transform.position = Random.insideUnitSphere * range;
+        transform.position = Random.insideUnitSphere * maxTeleportRange;
 
-        var delay = Random.Range(minDelay, maxDelay);
+        var delay = Random.Range(minTeleportDelay, maxTeleportDelay);
         yield return new WaitForSeconds(delay);
         StartCoroutine(nameof(Teleport));
     }

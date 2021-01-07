@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 public class PlayerHealth : MonoBehaviour
 {
     public int health = 10;
-
     public Text text;
     public ParticleSystem ps;
 
